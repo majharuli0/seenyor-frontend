@@ -1,0 +1,42 @@
+/* styles.css */
+.custom-select .ant-select-selector {
+  background-color: #333951 !important;
+  color: #fff; /* Changes the selector background */
+  width: 200px !important;
+  border: none !important;
+  height: 42px !important;
+  padding: 0 20px !important;
+  border-radius: 10px !important;
+}
+.custom-select .ant-select-item-option-active {
+  background-color: #333951 !important; /* Changes background of active options */
+}
+
+.custom-select .ant-select-selection-item {
+  background-color: #333951 !important; /* Changes selected item background */
+  color: #fff !important; /* Change text color */
+}
+
+.custom-select .ant-select-arrow {
+  color: #fff; /* Changes the arrow color */
+}
+.custom-select .ant-select-selection-search {
+  color: white;
+  padding: 0 20px !important;
+}
+
+.highlighted-number {
+  background-color: #ffffff; /* Highlight background color */
+  color: #333951; /* Text color */
+  padding: 0px 5px; /* Padding to make it stand out */
+  border-radius: 4px; /* Optional: rounding the corners */
+  font-weight: bold; /* Make it bold for emphasis */
+  margin-left: 5px;
+}
+
+.ant-picker-active-bar {
+  background-color: #333951 !important;
+}
+/* button.ant-btn:not(.tour_step_btn) {
+    background-color: unset !important;
+  } */

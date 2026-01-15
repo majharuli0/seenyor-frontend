@@ -1,0 +1,9 @@
+/* 更改选中的颜色 */
+.demoSwitch .ant-switch-checked {
+  background-color: #34c759 !important;
+}
+
+/* 更改未选中的颜色 */
+.demoSwitch .ant-switch {
+  background-color: rgba(120, 120, 128, 0.16);
+}

@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@config "./tailwind.config.js";
+/* @import "./variables.css"; */
+:root {
+  --my-gradient: 45deg, #ff0000 0%, #00ff00 33%, #0000ff 66%, #ffff00 100%;
+}
+.monitoring-agency-theme,
+.monitoring-agency-theme.light {
+  --ms-white-color: 255 255 255;
+
+  /* Core brand */
+  --ms-primary-color: 81 78 181;
+  --ms-secondary-color: 174 117 218;
+  --ms-accent-color: 247 82 112;
+  --ms-accent-foreground: 0 0 0;
+
+  /* Backgrounds */
+  --ms-background-color: 255 255 255;
+  --ms-text-color: 0 0 0;
+  --ms-border-color: 229 231 235;
+  --ms-input-color: 229 231 235;
+
+  /* Muted / popover / destructive */
+  --ms-muted-color: 243 244 246;
+  --ms-muted-foreground-color: 107 114 128;
+
+  --ms-popover-color: 255 255 255;
+  --ms-popover-foreground-color: 17 24 39; /* dark text */
+
+  --ms-destructive-color: 205 57 57;
+  --ms-confirm-color: 35 148 87;
+
+  /* Card shades */
+  --ms-card-color: 250 250 250;
+  --ms-card-50: 250 250 250;
+  --ms-card-100: 245 245 245;
+  --ms-card-200: 229 231 235;
+  --ms-card-300: 209 213 219;
+  --ms-card-400: 156 163 175;
+  --ms-card-500: 107 114 128;
+  --ms-card-600: 75 85 99;
+  --ms-card-700: 55 65 81;
+  --ms-card-800: 31 41 55;
+  --ms-card-900: 17 24 39;
+}
+
+.monitoring-agency-theme.dark {
+  --ms-primary-color: 66 132 244;
+  --ms-secondary-color: 174 117 218;
+  --ms-accent-color: 247 82 112;
+  --ms-accent-foreground: 255 255 255;
+
+  --ms-background-color: 0 0 0;
+  --ms-text-color: 255 255 255;
+  --ms-border-color: 55 65 81;
+  --ms-input-color: 55 65 81;
+
+  --ms-muted-color: 31 41 55;
+  --ms-muted-foreground-color: 156 163 175;
+
+  --ms-popover-color: 38 40 55;
+  --ms-popover-foreground-color: 229 231 235;
+
+  --ms-destructive-color: 205 57 57;
+  --ms-confirm-color: 35 148 87;
+
+  --ms-card-color: 38 40 55;
+  --ms-card-50: 31 41 55;
+  --ms-card-100: 38 50 67;
+  --ms-card-200: 55 65 81;
+  --ms-card-300: 75 85 99;
+  --ms-card-400: 107 114 128;
+  --ms-card-500: 156 163 175;
+  --ms-card-600: 209 213 219;
+  --ms-card-700: 229 231 235;
+  --ms-card-800: 243 244 246;
+  --ms-card-900: 255 255 255;
+}
+
+html.monitoring-agency-theme,
+.monitoring-agency-theme * {
+  font-family: var(--ms-font-family);
+  outline: none;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 6s linear infinite;
+}
+@keyframes liquidScale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.play-pause-btn {
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.play-pause-btn:active {
+  animation: liquidScale 0.4s ease;
+}
+
+.loader {
+  height: 80px;
+  aspect-ratio: 1;
+  padding: 10px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  position: relative;
+  mask:
+    conic-gradient(#000 0 0) content-box exclude,
+    conic-gradient(#000 0 0);
+  filter: blur(12px);
+}
+.loader:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-conic-gradient(#0000 0 5%, rgb(var(--ms-text-color)), #0000 20% 50%);
+  animation: l2 1.5s linear infinite;
+}
+@keyframes l2 {
+  to {
+    rotate: 1turn;
+  }
+}

@@ -1,0 +1,4 @@
+.placeholder-custom::placeholder {
+  color: #fff; /* Tailwind's gray-400 */
+  font-size: 14px;
+}

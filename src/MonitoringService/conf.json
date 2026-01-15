@@ -1,0 +1,27 @@
+{
+  "branding": {
+    "appName": "SEENYOR MONITORING",
+    "logoUrl": "/seenyor.svg",
+    "logoDarkUrl": "/seenyor_black.svg",
+    "faviconUrl": "/seenyor.svg"
+  },
+  "theme": {
+    "defaultMode": "system",
+    "colors": {
+      "light": {
+        "primary": "66 132 244",        
+        "secondary": "66 69 87",   
+        "accent": "245 245 245",       
+        "background": "255 255 255",  
+        "text": "17 18 27"                
+      },
+      "dark": {
+        "primary": "66 132 244",      
+        "secondary": "66 69 87",   
+        "accent": "55 65 81",       
+        "background": "17 18 27",        
+        "text": "255 255 255"          
+      }
+    }
+  }
+}

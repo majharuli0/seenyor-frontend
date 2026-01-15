@@ -1,0 +1,992 @@
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap');
+/* 
+#root {
+  margin: 0;
+  padding: 0;
+} */
+
+body {
+  /* font-family: Montserrat !important; */
+  font-family: 'Baloo2' !important;
+}
+
+/* Disable scrolling on the body */
+
+@layer {
+  .scrollbar::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #f7f4ed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #e0cbcb;
+    border-radius: 100vh;
+    border: 3px solid #f6f7ed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #c0a0b9;
+  }
+}
+
+button {
+  /* background-color: unset !important; */
+}
+
+@font-face {
+  font-family: 'normal';
+  src:
+    local('normal'),
+    url('./font/AkayaTelivigala-Regular.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Baloo2';
+  src:
+    local('Baloo2'),
+    url('./font/Baloo2-VariableFont_wght.ttf') format('opentype');
+}
+
+.Baloo2_font {
+  font-family: 'Baloo2';
+}
+
+.AkayaTelivigala-Regular {
+  font-family: 'normal';
+}
+
+body {
+  width: 100%;
+  /* font-family: "Poppins", "sans-serif", "roboto"; */
+  font-family: 'Baloo2' !important;
+  scroll-behavior: smooth;
+}
+
+.css-dev-only-do-not-override-1mch4b3 {
+  height: fit-content;
+}
+
+.css-dev-only-do-not-override-1mch4b3 {
+  margin-top: 0 !important;
+}
+
+.css-h0q0iv-MuiButtonBase-root-MuiTab-root {
+  padding: 12px 26px !important;
+  font-size: 14px !important;
+  text-transform: capitalize !important;
+  font-weight: 400 !important;
+}
+
+/* Antd DatePicker Customize */
+.ant-picker-ok .ant-btn {
+  background-color: #8086ac !important;
+}
+
+/* Antd Select Customize */
+#customSelectForForm .ant-select-selector {
+  border-radius: 16px !important;
+  outline: none !important;
+}
+
+#customSelectForForm .ant-select-selection-search-input::placeholder {
+  color: #a3aed0 !important;
+}
+
+/* Customize Tabs of Antd */
+#RoomNameTabsAnt .ant-tabs-nav {
+  width: 100% !important;
+}
+
+#RoomNameTabsAnt .ant-tabs-tab-btn {
+  width: 100% !important;
+}
+
+#RoomNameTabsAnt .ant-tabs-tab-active {
+  font-weight: 400 !important;
+}
+
+.swiper {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.swiper-slide {
+  width: 100%;
+}
+
+#sidebar_hover:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0) 104.88%
+  ) !important;
+  color: #fff;
+}
+
+.bg_color_gradient {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0) 104.88%
+  ) !important;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-left: 30px;
+  /* Space for icon */
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16"><path d="M8 0a4 4 0 0 0-4 4c0 3 4 8 4 8s4-5 4-8a4 4 0 0 0-4-4zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>')
+    no-repeat right center;
+  background-size: 20px 20px;
+  /* Size of icon */
+}
+
+.css-19kzrtu {
+  padding: 0px !important;
+}
+
+.border__item {
+  border: 8px solid transparent;
+}
+
+#supportAgent-p-bar .ant-progress-text {
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* ---------style for ant design layout----------- */
+.ant-layout-sider:not(.nurse-sider) .ant-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none !important;
+  padding: 0 !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.ant-menu-item {
+  display: flex !important;
+  align-items: center !important;
+  font-weight: 500;
+  color: #3c3c3e !important;
+}
+
+.ant-layout-sider:not(.nurse-sider) .ant-menu-item-active {
+  color: white !important;
+}
+
+.ant-layout-sider:not(.nurse-sider) .ant-menu-title-content {
+  display: none !important;
+}
+
+/* ---------style for ant design table----------- */
+
+.ant-table-thead .ant-table-cell {
+  background-color: green !important;
+}
+
+.ant-table-cell {
+  color: #5d6670;
+}
+
+.ant-table-thead > tr > th {
+  color: #68709c !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  text-wrap: nowrap !important;
+}
+
+.ant-table-tbody > tr > th {
+  color: #68709c !important;
+  font-size: 14px !important;
+  text-wrap: nowrap !important;
+}
+
+.support-agent-dashboard .ant-table-cell {
+  padding: 16px 16px !important;
+}
+
+.admin__Table .ant-table-cell {
+  padding: 16px 16px !important;
+  font-family: 'Baloo2' !important;
+  color: #707eae !important;
+  /* font-size: 16px !important; */
+}
+
+#deal_device_table .ant-table-cell {
+  padding: 16px !important;
+}
+
+.ant-table-thead .ant-table-cell {
+  background-color: #f7f7f9 !important;
+  border-radius: 0px !important;
+  padding: 10px 16px !important;
+}
+
+.newTable .ant-table-cell {
+  padding: 16px 16px !important;
+}
+
+.newTable .ant-table-cell {
+  background-color: #f7f7ff !important;
+  border-radius: 0px !important;
+  padding: 16px 27px !important;
+}
+
+.newTable .ant-fab5151a {
+  background: #fab5151a !important;
+}
+
+.newTable .ant-fab5151a .ant-table-cell {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.newTable .ant-ff66331a {
+  background: #ff66331a !important;
+}
+
+/* -----------support agent > dashboard > activity > elderly conditions date picker------------- */
+
+#elderlyDatePicker .ant-picker-input > input {
+  color: white !important;
+}
+
+#elderlyDatePicker .ant-picker-input > span {
+  color: white !important;
+}
+
+#elderlyDatePicker input::placeholder {
+  color: rgb(248, 248, 248);
+}
+
+#suspendAdmin__swiper .mySwiper2 .swiper {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* this is audio track*/
+#waveform > div {
+  margin-bottom: 64px !important;
+}
+
+/* ===========ant modal css========== */
+
+.ant-modal {
+  border-radius: 30px !important;
+  padding: 0px !important;
+}
+
+.ant-modal-content {
+  border-radius: 30px !important;
+  padding: 0px !important;
+}
+
+.device-configuration-modal .ant-modal-content,
+.device-configuration-modal .ant-modal {
+  border-radius: 16px !important;
+  padding: 0px !important;
+}
+
+.device-offline-modal .ant-modal-content {
+  border-radius: 8px !important;
+  padding: 0px !important;
+}
+
+.ant-tabs-nav {
+  margin-bottom: 0 !important;
+}
+
+/* its use for divice finding--------------- */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.circle-container {
+  position: relative;
+  width: 218px;
+  height: 217px;
+  animation: rotate 1s linear infinite;
+}
+
+.animated-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ----------start rounded checkbox ----------- */
+.rounded-checkbox .ant-checkbox-wrapper {
+  border-radius: 50%;
+}
+
+.rounded-checkbox .ant-checkbox-inner {
+  border-radius: 50%;
+}
+
+/* -------------checkbox --------------- */
+:where(.css-dev-only-do-not-override-nllxry).ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #252f67 !important;
+  border: 1px solid #252f67 !important;
+}
+
+.ant-checkbox-inner {
+  border: 1px solid #252f67 !important;
+}
+
+/* -----------------style for switch------------- */
+:where(.css-dev-only-do-not-override-nllxry).ant-switch:hover {
+  background-color: #252f67 !important;
+}
+
+:where(.css-dev-only-do-not-override-nllxry).ant-switch.ant-switch-checked {
+  background: #252f67;
+}
+
+/* -------------------devices tabs---------------------- */
+#device :where(.css-dev-only-do-not-override-nllxry).ant-tabs .ant-tabs-tab + .ant-tabs-tab {
+  margin-right: 10px !important;
+  margin-top: 0px !important;
+  margin-left: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+#device :where(.css-dev-only-do-not-override-nllxry).ant-tabs .ant-tabs-tab {
+  padding: 15px 20px !important;
+  margin-right: 15px !important;
+  border-radius: 38px;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: #2b3674;
+}
+
+#device :where(.css-dev-only-do-not-override-nllxry).ant-tabs-top > .ant-tabs-nav::before {
+  border-bottom: 0px !important;
+}
+
+#device :where(.css-dev-only-do-not-override-nllxry).ant-tabs .ant-tabs-tab.ant-tabs-tab-active {
+  background-color: #ff394a00;
+}
+
+#device
+  :where(.css-dev-only-do-not-override-nllxry).ant-tabs
+  .ant-tabs-tab.ant-tabs-tab-active
+  .ant-tabs-tab-btn {
+  color: #252f67 !important;
+}
+
+.device-configuration-modal .ant-tabs-nav {
+  margin-bottom: 0 !important;
+}
+
+.mini-modal .ant-modal-content {
+  border-radius: 10px !important;
+  padding: 16px !important;
+}
+
+.video-modal .ant-modal-content {
+  border-radius: 10px !important;
+  padding: 0px !important;
+  background-color: rgb(0, 0, 0);
+  color: white !important;
+}
+
+.video-modal .ant-modal-close {
+  color: white !important;
+}
+
+.custom-radio {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1.5px solid #d9d9d9;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.custom-radio.ant-radio-wrapper-checked {
+  border-color: #252f67 !important;
+}
+
+#device :where(.css-dev-only-do-not-override-nllxry).ant-tabs-top > .ant-tabs-nav,
+:where(.css-dev-only-do-not-override-nllxry).ant-tabs-bottom > .ant-tabs-nav {
+  margin-bottom: 0px !important;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 8px !important;
+  border-radius: 0px;
+}
+
+#device .ant-tabs-ink-bar {
+  background: #252f67 !important;
+}
+
+/* -------------------------------members overview in customer------------- */
+#member .g2-html-annotation {
+  color: white !important;
+  top: 125px !important;
+}
+
+/* --------------elderly member overview pie chart----------------- */
+#elderly-overview .g2-html-annotation {
+  color: white !important;
+}
+
+/* ---------------------style for popover------------------- */
+.ant-popover .ant-popover-inner {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#device .ant-popover {
+  z-index: 0 !important;
+}
+
+/* ------------------tooltip----------- */
+.ant-table-thead .ant-table-cell.ant-table-selection-column {
+  padding: 0px !important;
+}
+
+.g2-tooltip {
+  background-color: rgba(255, 255, 255, 0) !important;
+  box-shadow: 0px 0px 0px rgba(255, 255, 255, 0) !important;
+}
+
+#alert .g2-tooltip {
+  background-color: #252f67 !important;
+  color: white;
+}
+
+/* --------------------ant table pagination---------------- */
+
+/* :where(.css-dev-only-do-not-override-nllxry).ant-table-wrapper .ant-table-pagination.ant-pagination {
+  padding-right: 22px !important;
+} */
+/* here all table pagination gap problem */
+.ant-pagination-next {
+  margin-right: 22px !important;
+}
+
+.ant-pagination-prev {
+  border: 1px solid rgb(185, 182, 182);
+  border-radius: 8px !important;
+  padding: 0px 6px !important;
+}
+
+.ant-pagination-item-link {
+  color: rgba(43, 54, 116, 0.8) !important;
+}
+
+.ant-pagination-item-link:disabled {
+  color: rgba(157, 158, 163, 0.8) !important;
+}
+
+.ant-pagination-prev ::after {
+  content: 'Previous';
+  margin-left: 2px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
+.ant-pagination-item-link ::after {
+  content: '' !important;
+}
+
+.ant-pagination-next {
+  border: 1px solid rgb(185, 182, 182);
+  border-radius: 8px !important;
+  margin-left: 8px !important;
+  padding: 0px 6px !important;
+}
+
+.ant-pagination-next ::before {
+  content: 'Next';
+  margin-right: 6px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
+.ant-pagination-item {
+  border: 1px solid rgb(185, 182, 182) !important;
+  border-radius: 0px !important;
+  margin: 0px !important;
+}
+
+.ant-pagination-item-1 {
+  border: 1px solid rgb(185, 182, 182) !important;
+  border-bottom-right-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  border-top-left-radius: 8px !important;
+  border-bottom-left-radius: 8px !important;
+  margin: 0px !important;
+}
+
+.ant-spin-container ul li:nth-last-child(2) {
+  border-bottom-right-radius: 8px !important;
+  border-top-right-radius: 8px !important;
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  margin: 0px !important;
+}
+
+.ant-pagination-item a {
+  color: rgba(43, 54, 116, 0.6) !important;
+}
+
+.ant-pagination-item-active {
+  background-color: #252f67 !important;
+  border: 1px solid #252f67 !important;
+}
+
+.customer-table-wrapper .ant-pagination-item-active {
+  background-color: #514eb5 !important;
+  border: 1px solid #514eb5 !important;
+}
+
+.ant-pagination-item-active a {
+  color: white !important;
+  font-size: 13px !important;
+  font-weight: bold !important;
+}
+
+/* ----- -----------------style for scrollbar----------------*/
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(206, 205, 205);
+  border-radius: 10px;
+}
+
+/* --------------loading----------------- */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  animation: rotation 0.75s linear infinite;
+  border-radius: 100em;
+}
+
+.path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 20;
+  stroke-linecap: round;
+}
+
+@keyframes rotation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --------------second loading------------ */
+.second-loading {
+  --clr: rgb(255, 255, 255);
+  --gap: 6px;
+  /* gap between each circle */
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap);
+}
+
+.second-loading span {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: var(--clr);
+  opacity: 0;
+}
+
+.second-loading span:nth-child(1) {
+  animation: fade 1s ease-in-out infinite;
+}
+
+.second-loading span:nth-child(2) {
+  animation: fade 1s ease-in-out 0.33s infinite;
+}
+
+.second-loading span:nth-child(3) {
+  animation: fade 1s ease-in-out 0.66s infinite;
+}
+
+@keyframes fade {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 0;
+  }
+}
+
+/* --------------------------adding loading---------------- */
+.adding {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  background: transparent;
+  border-radius: 50%;
+  /* box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.55); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.adding::before {
+  content: '';
+  position: absolute;
+  inset: 20px;
+  background: transparent;
+  border-radius: 50%;
+  /* box-shadow: inset -5px -5px 25px rgba(0, 0, 0, 0.25), */
+  /* inset 5px 5px 35px rgba(0, 0, 0, 0.25); */
+}
+
+.adding::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  /* box-shadow: inset -5px -5px 25px rgba(0, 0, 0, 0.25),
+    inset 5px 5px 35px rgba(0, 0, 0, 0.25); */
+}
+
+.adding span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  background: transparent;
+  transform-origin: top left;
+  animation: radar81 2s linear infinite;
+  /* border-top: 1px dashed #fff; */
+}
+
+.adding span::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #8f39ff81;
+  /* pink */
+  transform-origin: top left;
+  transform: rotate(-55deg);
+  filter: blur(30px) drop-shadow(20px 20px 20px #8f39ff73);
+  /* pink */
+}
+
+@keyframes radar81 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.ant-progress-text {
+  color: #ffffffd9 !important;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.ant-drawer-wrapper-body .ant-drawer-body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* -------------------ant slider style------------------------------ */
+
+.ant-slider-handle::after {
+  box-shadow: 0 0 0 3px #252f67 !important;
+}
+
+/* ------------------------trend table --------------- */
+#trend .ant-table-cell {
+  border-bottom: none !important;
+  padding: 0px !important;
+}
+
+#chart-table .ant-table-thead .ant-table-cell {
+  color: #2b3674 !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+}
+
+#chart-table .ant-table-tbody .ant-table-cell {
+  color: #707eae !important;
+  font-size: 16px !important;
+}
+
+/* ------------modal table--------- */
+#modal-table .ant-table-cell {
+  padding-left: 30px !important;
+}
+
+#admin__support__agent .ant-table-tbody tr {
+  /* cursor:  pointer !important; */
+}
+
+/* @media screen and (min-device-width: 1020px) and (max-device-width: 1580px) { 
+    .add_zoom{
+      zoom: 80% !important;
+    }
+} */
+
+.ant-select-dropdown {
+  overflow: auto !important;
+}
+
+@media only screen and (min-width: 1020px) and (max-width: 1580px) {
+  #add_zoom {
+    zoom: 80% !important;
+  }
+
+  #admin-overview {
+    height: 780px !important;
+  }
+
+  #add_zoom_90 {
+    zoom: 90% !important;
+  }
+}
+
+.line1 {
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+}
+
+/* //tab responsive css */
+.cursor-grab {
+  cursor: grab;
+}
+
+.cursor-grab:active {
+  cursor: grabbing;
+}
+
+.ant-table-content {
+  scrollbar-width: thin !important;
+  scrollbar-color: #f5f5f5 !important;
+}
+
+#elderly-profile-tabs .ant-tabs-nav {
+  font-family: 'Baloo2' !important;
+  margin-bottom: 0px !important;
+  padding: 0px 16px !important;
+  background-color: white !important;
+  border-bottom: 0.2px solid #efefef !important;
+  border-radius: 10px 10px 10px 10px !important;
+}
+
+#elderly-profile-tabs .ant-tabs-nav-list {
+  /* margin-bottom: 0px !important; */
+  margin-top: 10px !important;
+  gap: 10px !important;
+}
+
+#elderly-profile-tabs .ant-tabs-tab {
+  border: none !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: #252f67a1 !important;
+}
+
+.modal {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal .modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 350px;
+}
+
+.modal .modal-header {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.modal .modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal .btn {
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.modal .btn-reload {
+  background-color: #1b9260;
+  color: white;
+}
+
+.modal .btn-later {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Make active (selected) menu item purple with white text */
+:has(.nurse-sider) .ant-menu-item-selected {
+  background-color: #514eb5 !important;
+  color: #ffffff !important;
+  border-radius: 6px;
+}
+
+:has(.nurse-sider) .ant-menu-item-selected a {
+  color: #ffffff !important;
+}
+
+/* .ant-menu-item:hover {
+  color: #5A46D6 !important;
+} */
+
+/* Custom thin scrollbar */
+.thin-scrollbar::-webkit-scrollbar {
+  height: 6px;
+  /* Thin height */
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+
+.ql-editor {
+  min-height: 300px;
+}
+
+.ql-editor h1 {
+  font-size: 2rem;
+  margin: 0.75em 0 0.5em;
+  line-height: 1.25;
+}
+
+.ql-editor h2 {
+  font-size: 1.75rem;
+  margin: 0.75em 0 0.5em;
+  line-height: 1.3;
+}
+
+.ql-editor h3 {
+  font-size: 1.5rem;
+  margin: 0.75em 0 0.5em;
+  line-height: 1.35;
+}
+
+.ql-editor h4 {
+  font-size: 1.25rem;
+  margin: 0.75em 0 0.5em;
+  line-height: 1.4;
+}
+
+.ql-editor h5 {
+  font-size: 1.125rem;
+  margin: 0.75em 0 0.5em;
+  line-height: 1.45;
+}
+
+.ql-editor h6 {
+  font-size: 1rem;
+  margin: 0.75em 0 0.5em;
+  line-height: 1.5;
+}
+
+.ql-editor ol,
+.ql-editor ul {
+  padding-left: 1.5rem;
+  margin: 0.5em 0;
+}
+
+.ql-editor ol {
+  list-style-type: decimal;
+}
+
+.ql-editor ul {
+  list-style-type: disc;
+}
+
+.ant-popconfirm-inner-content {
+  padding: 15px !important;
+}
+
+.active-step .ant-steps-item-tail::after {
+  background-color: green !important;
+  opacity: 0.7;
+}
+
+.loggedout-step .ant-steps-item-tail::after {
+  background-color: red !important;
+  opacity: 0.7;
+}

@@ -1,0 +1,54 @@
+// Function to generate grid lines for the full canvas
+  const renderGridLines = () => {
+    const gridLines = [];
+
+    // Horizontal grid lines for the entire canvas
+    for (let y = 0; y < stageHeight * 2; y += gridSize) {
+      gridLines.push(
+        <Rect
+          key={`h-${y}`}
+          x={-stageOffsetX * 2} // Shift grid to the left to prevent starting from the center
+          y={y}
+          width={stageWidth * 2} // Ensure grid covers the full width of the canvas
+          height={1}
+          fillLinearGradientStartPoint={{ x: 0, y: 0 }}
+          fillLinearGradientEndPoint={{ x: stageWidth * 2, y: 0 }}
+          fillLinearGradientColorStops={[
+            0,
+            "rgba(255,255,255,1)",
+            0.2,
+            "rgba(72,72,72,0.2)",
+            1,
+            "rgba(255,255,255,1)",
+          ]}
+        />
+      );
+    }
+
+    // Vertical grid lines for the entire canvas
+    for (let x = 0; x < stageWidth * 2; x += gridSize) {
+      gridLines.push(
+        <Rect
+          key={`v-${x}`}
+          x={x - stageOffsetX * 2} // Shift grid to the left to prevent starting from the center
+          y={0}
+          width={1}
+          height={stageHeight * 2} // Ensure grid covers the full height of the canvas
+          // fill="lightgray"
+          // stroke="lightgray"
+          fillLinearGradientStartPoint={{ x: 0, y: 0 }}
+          fillLinearGradientEndPoint={{ x: 0, y: stageHeight * 2 }}
+          fillLinearGradientColorStops={[
+            0,
+            "rgba(255,255,255,1)",
+            0.2,
+            "rgba(72,72,72,0.2)",
+            1,
+            "rgba(255,255,255,1)",
+          ]}
+        />
+      );
+    }
+
+    return gridLines;
+  };

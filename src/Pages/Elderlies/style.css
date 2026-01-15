@@ -1,0 +1,226 @@
+#dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#dots > li.slick-active button:before {
+  color: #05042eb8 !important;
+}
+#dropdownToCall .ant-select-selector {
+  width: 200px;
+  border: none !important;
+  background-color: transparent !important;
+  color: white !important;
+  outline: none !important;
+}
+
+#dropdownToCall .ant-select-selection-placeholder {
+  color: white !important;
+}
+
+#dropdownToCall .ant-select {
+  outline: none !important;
+}
+#dropdownToCall .ant-select-arrow {
+  color: white !important;
+}
+#healthScore .ant-progress-text {
+  color: #000 !important;
+}
+#elderlyHealthScore .ant-btn {
+  background-color: #252f67 !important;
+  border-color: #252f67 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.ant-select-selector {
+  padding-left: 8px !important;
+}
+
+#reports .ant-collapse-content {
+  background-color: transparent !important;
+}
+#reports .ant-collapse-content-box {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+#reports .ant-collapse-header {
+  border: none !important;
+  padding: 0 !important;
+  padding-bottom: 10px !important;
+  border-radius: 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding-top: 8px !important;
+}
+#reports .ant-collapse-header:hover {
+  background-color: #0000000a !important;
+}
+#reports .ant-collapse-header-text {
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  border-bottom: none !important;
+}
+#reports .ant-collapse-content-box {
+  padding: 0 !important;
+}
+#reports .ant-collapse-item {
+  border: none !important;
+}
+#dataAnalyze .ant-collapse {
+  border: none !important;
+}
+#dataAnalyze .ant-collapse-item {
+  background-color: #fff !important;
+}
+#reports .ant-collapse-content.ant-collapse-content-active {
+  border: none !important;
+}
+#reports .ant-collapse {
+  gap: 10px !important;
+  flex-direction: column !important;
+  display: flex !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+#communication-tab {
+  width: 100% !important;
+}
+#communication-tab .ant-tabs {
+  background-color: transparent !important;
+  display: flex !important;
+  width: 100% !important;
+}
+.activeTab {
+  background-color: #43b98207 !important;
+}
+#communication-tab .ant-tabs-content {
+  height: 100% !important;
+}
+#communication-tab .ant-tabs-tabpane.ant-tabs-tabpane-active {
+  padding: 0 !important;
+}
+
+/* for elderly profile glow */
+
+@keyframes criticalAnimation {
+  0% {
+    background-color: rgba(255, 0, 0, 0.7);
+    transform: translate(0, 0) scale(1.2);
+  }
+  25% {
+    background-color: rgba(255, 80, 80, 0.7);
+    transform: translate(10px, -10px) scale(1.3);
+  }
+  50% {
+    background-color: rgba(255, 120, 120, 0.7);
+    transform: translate(-10px, 10px) scale(1.4);
+  }
+  75% {
+    background-color: rgba(255, 80, 80, 0.7);
+    transform: translate(10px, 10px) scale(1.3);
+  }
+  100% {
+    background-color: rgba(255, 0, 0, 0.7);
+    transform: translate(0, 0) scale(1.2);
+  }
+}
+
+@keyframes warningAnimation {
+  0% {
+    background-color: rgba(255, 165, 0, 0.7);
+    transform: translate(0, 0) scale(1.2);
+  }
+  25% {
+    background-color: rgba(255, 200, 50, 0.7);
+    transform: translate(10px, -10px) scale(1.3);
+  }
+  50% {
+    background-color: rgba(255, 220, 100, 0.7);
+    transform: translate(-10px, 10px) scale(1.4);
+  }
+  75% {
+    background-color: rgba(255, 200, 50, 0.7);
+    transform: translate(10px, 10px) scale(1.3);
+  }
+  100% {
+    background-color: rgba(255, 165, 0, 0.7);
+    transform: translate(0, 0) scale(1.2);
+  }
+}
+
+@keyframes problemAnimation {
+  0% {
+    background-color: rgba(0, 0, 255, 0.7);
+    transform: translate(0, 0) scale(1.2);
+  }
+  25% {
+    background-color: rgba(80, 80, 255, 0.7);
+    transform: translate(10px, -10px) scale(1.3);
+  }
+  50% {
+    background-color: rgba(120, 120, 255, 0.7);
+    transform: translate(-10px, 10px) scale(1.4);
+  }
+  75% {
+    background-color: rgba(80, 80, 255, 0.7);
+    transform: translate(10px, 10px) scale(1.3);
+  }
+  100% {
+    background-color: rgba(0, 0, 255, 0.7);
+    transform: translate(0, 0) scale(1.2);
+  }
+}
+
+@keyframes goodAnimation {
+  0% {
+    background-color: rgba(0, 255, 0, 0.7);
+    transform: translate(0, 0) scale(1.2);
+  }
+  25% {
+    background-color: rgba(80, 255, 80, 0.7);
+    transform: translate(10px, -10px) scale(1.3);
+  }
+  50% {
+    background-color: rgba(120, 255, 120, 0.7);
+    transform: translate(-10px, 10px) scale(1.4);
+  }
+  75% {
+    background-color: rgba(80, 255, 80, 0.7);
+    transform: translate(10px, 10px) scale(1.3);
+  }
+  100% {
+    background-color: rgba(0, 255, 0, 0.7);
+    transform: translate(0, 0) scale(1.2);
+  }
+}
+
+.critical {
+  animation: criticalAnimation 5s infinite alternate;
+}
+
+.warning {
+  animation: warningAnimation 5s infinite alternate;
+}
+
+.problem {
+  animation: problemAnimation 5s infinite alternate;
+}
+
+.good {
+  animation: goodAnimation 5s infinite alternate;
+}
+
+.group-name {
+  /* opacity: 0;  */
+  transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+.group-name.sticky {
+  position: sticky;
+  top: 0; /* Adjust as needed */
+  z-index: 10;
+  background-color: white;
+  opacity: 1; /* Make visible when sticky */
+}

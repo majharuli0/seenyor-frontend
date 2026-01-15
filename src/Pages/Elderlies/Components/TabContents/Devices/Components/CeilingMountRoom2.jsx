@@ -1,0 +1,223 @@
+import { decodePosition } from '@/utils/helper';
+import React, { useState, useEffect, useContext, useRef } from 'react';
+import { Stage, Layer, Line, Circle, Group, Text, Image } from 'react-konva';
+import { CustomContext } from '@/Context/UseCustomContext';
+import ObjectRenderer from './CeilingMountRoom';
+import full from '@/assets/icon/room/full.png';
+const CeilingMountRoom = ({ roomInfo = [] }) => {
+  const context = useContext(CustomContext);
+  // Safely destructure elderlyDetails
+  const { elderlyDetails } = context || {};
+  const deviceCode = roomInfo?.device_no || elderlyDetails?.deviceId;
+  // const [position, setPosition] = useState([]);
+  const [deviceIcon, setDeviceIcon] = useState(null);
+  const parentRef = useRef();
+  const [stageScale, setScale] = useState(1);
+  const roomWidthPx = 600;
+  const roomHeightPx = 500;
+  const [stageWidth, setStageWidth] = useState(600);
+  const [stageHeight, setStageHeight] = useState(500);
+  const [stageOffsetX, setStageOffsetX] = useState(0);
+  const [stageOffsetY, setStageOffsetY] = useState(0);
+  // Default dimensions for the top-mounted device
+  const [boundary, setBoundary] = useState({
+    up_left: [0, 0],
+    low_left: [0, 0],
+    up_right: [0, 0],
+    low_right: [0, 0],
+  });
+  const [objects, setObjects] = useState([]);
+  const scale = 10;
+  const canvasCenter = { x: 30 * scale, y: 25 * scale };
+
+  // Convert boundary coordinates to pixel values
+  const convertCoords = (coords = [0, 0]) => {
+    if (!Array.isArray(coords) || coords.length < 2) {
+      throw new Error('Invalid input: coords must be an array with at least two elements.');
+    }
+
+    const [x = 0, y = 0] = coords;
+
+    return [canvasCenter.x - x * scale, canvasCenter.y + y * scale];
+  };
+
+  // Define boundary points for the polygon (top-mounted device)
+  const boundaryPoints = [
+    ...convertCoords(boundary.up_left),
+    ...convertCoords(boundary.low_left),
+    ...convertCoords(boundary.low_right),
+    ...convertCoords(boundary.up_right),
+  ];
+
+  useEffect(() => {
+    if (roomInfo?.device_boundaries && typeof roomInfo.device_boundaries === 'object') {
+      const area = Object.fromEntries(
+        Object.entries(roomInfo.device_boundaries).reduce((acc, [key, value]) => {
+          if (key === '_id') return acc; // Skip the _id field
+          acc.push([key, value.split(',').map(Number)]);
+          return acc;
+        }, [])
+      );
+      setBoundary(area);
+    } else {
+      console.error('device_boundaries is undefined or not an object');
+      setBoundary({});
+    }
+
+    const transformedData = roomInfo?.device_areas?.map(({ _id, coordKey, ...rest }) => ({
+      ...rest,
+      up_left: rest.up_left.split(',').map(Number),
+      low_left: rest.low_left.split(',').map(Number),
+      up_right: rest.up_right.split(',').map(Number),
+      low_right: rest.low_right.split(',').map(Number),
+    }));
+    console.log(roomInfo);
+
+    setObjects(transformedData);
+    const img = new window.Image();
+    img.src = full;
+
+    img.onload = () => {
+      setDeviceIcon(img);
+    };
+  }, [roomInfo]);
+
+  const generateGridLines = (points) => {
+    const lines = [];
+    const [minX, maxX, minY, maxY] = [
+      Math.min(...points.filter((_, i) => i % 2 === 0)), // X-coordinates
+      Math.max(...points.filter((_, i) => i % 2 === 0)),
+      Math.min(...points.filter((_, i) => i % 2 !== 0)), // Y-coordinates
+      Math.max(...points.filter((_, i) => i % 2 !== 0)),
+    ];
+
+    // Horizontal grid lines
+    for (let y = minY + 10; y < maxY; y += 50) {
+      lines.push([minX, y, maxX, y]);
+    }
+
+    // Vertical grid lines
+    for (let x = minX + 10; x < maxX; x += 50) {
+      lines.push([x, minY, x, maxY]);
+    }
+
+    return lines;
+  };
+  useEffect(() => {
+    // Ensure parentRef is valid and resize the stage on mount
+    const updateScale = () => {
+      if (parentRef.current) {
+        const widthScale = parentRef.current.clientWidth / roomWidthPx;
+        const heightScale = parentRef.current.clientHeight / roomHeightPx;
+        const newScale = Math.min(widthScale, heightScale); // Scale down to fit
+        setScale(newScale);
+
+        // Update stage size based on scale
+        const newStageWidth = parentRef.current.clientWidth;
+        const newStageHeight = parentRef.current.clientHeight;
+        setStageWidth(newStageWidth);
+        setStageHeight(newStageHeight);
+
+        // Calculate offset for centering the room inside the parent div
+        const offsetX = (newStageWidth - roomWidthPx * newScale) / 2;
+        const offsetY = (newStageHeight - roomHeightPx * newScale) / 2;
+        setStageOffsetX(offsetX);
+        setStageOffsetY(offsetY);
+      }
+    };
+
+    // Set initial scale on mount
+    updateScale();
+
+    // Use ResizeObserver to handle changes in container size
+    const resizeObserver = new ResizeObserver(updateScale);
+    if (parentRef.current) {
+      resizeObserver.observe(parentRef.current);
+    }
+
+    // Clean up observer when the component is unmounted
+    return () => {
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+    };
+  }, [roomWidthPx, roomHeightPx]);
+
+  // Function to handle resizing of objects
+  const handleResize = (updatedDimensions) => {
+    console.log('Resized Object:', updatedDimensions);
+    // Update the state or send to API if needed
+  };
+  return (
+    <div
+      ref={parentRef}
+      style={{
+        width: '100%',
+        height: '100%',
+        overflow: 'hidden',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: '0 auto',
+        maxHeight: '500px',
+        maxWidth: '600px',
+        border: '1px solid red',
+      }}
+    >
+      <Stage
+        width={stageWidth || 600}
+        height={stageHeight || 500}
+        scaleX={stageScale}
+        scaleY={stageScale}
+      >
+        <Layer x={(stageWidth - 600 * stageScale) / 2} y={(stageHeight - 500 * stageScale) / 2}>
+          <Line
+            points={boundaryPoints}
+            closed
+            stroke='rgba(250, 181, 21, 1' // Border color
+            strokeWidth={2} // Border thickness
+            dash={[10, 5]} // Dashed border (10px dash, 5px gap)
+            fill='rgba(250, 181, 21, 0.2)' // Light blue background with transparency
+            opacity={0.4}
+          />
+
+          {/* Grid lines inside the polygon */}
+          {generateGridLines(boundaryPoints).map((gridLine, index) => (
+            <Line
+              key={index}
+              points={gridLine}
+              stroke='rgba(250, 181, 21, 1'
+              strokeWidth={0.5}
+              dash={[2, 3]} // Dashed grid lines
+            />
+          ))}
+
+          {/* {objects?.map((obj, index) => (
+            <ObjectRenderer
+              key={index}
+              // object={obj}
+              // convertCoords={convertCoord}
+              // onResize={handleResize}
+            />
+          ))} */}
+          {/* <ObjectRenderer
+          // convertCoords={convertCoords}
+          /> */}
+
+          {deviceIcon && (
+            <Image
+              image={deviceIcon}
+              x={canvasCenter.x - 50 / 2} // Center the icon horizontally
+              y={canvasCenter.y - 50 / 2} // Center the icon vertically
+              width={50}
+              height={50}
+            />
+          )}
+        </Layer>
+        {/* Render Objects (e.g., bed, sofa) */}
+      </Stage>
+    </div>
+  );
+};
+
+export default CeilingMountRoom;
