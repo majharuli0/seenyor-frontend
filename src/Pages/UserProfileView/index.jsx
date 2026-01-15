@@ -37,7 +37,10 @@ export default function UserProfileView() {
       monitoring_agency: '/ms/dashboard',
       elderly: `/supporter/elderlies/elderly-profile/${param[1]}?tab=overview`,
     };
-    navigate(routes[role] || '/support-nurnt/dashboard');
+    navigate(
+      (Object.prototype.hasOwnProperty.call(routes, role) ? routes[role] : undefined) ||
+        '/support-nurnt/dashboard'
+    );
   };
 
   const setUpEverythingForViewProfile = (data) => {

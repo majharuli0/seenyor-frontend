@@ -157,7 +157,9 @@ export default function useAlertHistoryColumns(type) {
   useEffect(() => {
     if (type === 'alertHistory') {
       const cols = alertColsMapping.alertHistory.map((col) => {
-        return AlertsTableColumns[col];
+        return Object.prototype.hasOwnProperty.call(AlertsTableColumns, col)
+          ? AlertsTableColumns[col]
+          : null;
       });
       setAlertTableColumns(cols);
     } else {

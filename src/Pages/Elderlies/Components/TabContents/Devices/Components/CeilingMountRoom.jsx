@@ -627,7 +627,12 @@ const CeillingMountRoom = ({ device_id, elderly_id }) => {
                         Label:{' '}
                         <span className='font-medium ml-2'>
                           {objectData[selectedIndex] &&
-                            objectLabel[objectData[selectedIndex]?.type].label}
+                          Object.prototype.hasOwnProperty.call(
+                            objectLabel,
+                            objectData[selectedIndex]?.type
+                          )
+                            ? objectLabel[objectData[selectedIndex]?.type].label
+                            : 'Unknown'}
                         </span>
                       </p>
                       <p className='text-base'>

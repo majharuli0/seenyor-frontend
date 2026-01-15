@@ -112,7 +112,10 @@ export default function RoomView() {
   const groupedAlerts = useMemo(() => {
     return alertList.reduce((acc, alert) => {
       const roomName = alert.room_name;
-      if (!acc[roomName]) {
+      if (roomName === '__proto__' || roomName === 'constructor' || roomName === 'prototype') {
+        return acc;
+      }
+      if (!Object.prototype.hasOwnProperty.call(acc, roomName)) {
         acc[roomName] = [];
       }
       acc[roomName].push(alert);

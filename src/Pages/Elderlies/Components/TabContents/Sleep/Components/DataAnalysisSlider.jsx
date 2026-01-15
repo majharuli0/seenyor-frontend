@@ -64,7 +64,7 @@ export default function DataAnalysisSlider() {
         <div id='dataAnalysisSlider' className='w-full mb-2 transition-all duration-300'>
           <Slider {...settings} className='w-full transition-all duration-300'>
             {Object.keys(sleepData?.evaluation)
-              .filter((key) => keyToEnglishTitleMap[key]) // Only include keys that have a title in the map
+              .filter((key) => Object.prototype.hasOwnProperty.call(keyToEnglishTitleMap, key)) // Only include keys that have a title in the map
               .map((key) => {
                 const itemName = keyToEnglishTitleMap[key]; // Use key as the title
                 const description = sleepData?.evaluation[key] || 'No Analysis Available';

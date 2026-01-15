@@ -86,7 +86,12 @@ export const WebSocketProvider = ({ children, deviceId = '' }) => {
             // Only update if we have new data, otherwise keep previous
             newData[deviceCode] = {
               position: updates.position || prev[deviceCode]?.position || [],
-              heartBreath: updates.heartBreath || prev[deviceCode]?.heartBreath || null,
+              heartBreath:
+                updates.heartBreath ||
+                (Object.prototype.hasOwnProperty.call(prev, deviceCode)
+                  ? prev[deviceCode]?.heartBreath
+                  : null) ||
+                null,
               hbstatics: updates.hbstatics || prev[deviceCode]?.hbstatics || null,
               hbstaticsTimestamp:
                 updates.hbstaticsTimestamp || prev[deviceCode]?.hbstaticsTimestamp || null,

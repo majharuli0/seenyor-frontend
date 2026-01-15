@@ -10,7 +10,7 @@ export default function LiveRateChart({ data, color, type, timestamp }) {
 
   // Map data with corresponding timestamps
   const filteredData = data?.map((value, index) => {
-    const time = timestamp[index];
+    const time = (timestamp && timestamp[index]) || '00:00';
     // Extract hours and minutes from timestamp
     const [hours, minutes] = time.split(':');
     const formattedTime = `${hours}:${minutes}`;

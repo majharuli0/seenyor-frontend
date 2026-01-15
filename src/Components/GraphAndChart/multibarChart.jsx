@@ -48,7 +48,9 @@ export default function MultibarChart({ data, fromDate, toDate, valueType = 'dur
     const dataByDate = (Array.isArray(chartData) ? chartData : []).reduce((acc, item) => {
       if (!item?.date || !item?.data) return acc;
       const dateKey = dayjs(item.date).format('YYYY-MM-DD');
-      acc[dateKey] = item.data;
+      if (dateKey !== '__proto__' && dateKey !== 'constructor' && dateKey !== 'prototype') {
+        acc[dateKey] = item.data;
+      }
       return acc;
     }, {});
 

@@ -125,9 +125,13 @@ const AdminDashboard = () => {
   const getlist = useCallback(async () => {
     SetList([]);
     let queries = { ...page, ...query };
-    const formattedRoleName = roleMappings[activeTab];
+    const formattedRoleName = Object.prototype.hasOwnProperty.call(roleMappings, activeTab)
+      ? roleMappings[activeTab]
+      : activeTab;
     setCreateText(formattedRoleName);
-    queries.role = roleMappings2[activeTab];
+    queries.role = Object.prototype.hasOwnProperty.call(roleMappings2, activeTab)
+      ? roleMappings2[activeTab]
+      : undefined;
     setRole(queries.role);
     navigate(`/super-admin/users?tab=${activeTab}`);
 

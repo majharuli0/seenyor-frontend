@@ -455,8 +455,13 @@ export const decodePosition = (base64, devicecode) => {
       event: eventMap[event] || 'Unknown',
       eventId: event || null,
       areaId: event === 3 || event === 4 ? areaId : null,
-      color: postureColorMap[posture] || eventColorMap[event] || '#000000',
-      color2: postureColorMap2[posture] || '#000000',
+      color:
+        (Object.prototype.hasOwnProperty.call(postureColorMap, posture) ? postureColorMap[posture] : undefined) ||
+        (Object.prototype.hasOwnProperty.call(eventColorMap, event) ? eventColorMap[event] : undefined) ||
+        '#000000',
+      color2:
+        (Object.prototype.hasOwnProperty.call(postureColorMap2, posture) ? postureColorMap2[posture] : undefined) ||
+        '#000000',
     });
 
     peopleData.forEach((p, idx) => {

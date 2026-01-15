@@ -16,9 +16,12 @@ const svgsforevent = import.meta.glob('../assets/icon/room/events/*.svg', {
 });
 let iconsforevent = {};
 for (const key in svgsforevent) {
-  if (Object.hasOwnProperty.call(svgsforevent, key)) {
+  if (Object.prototype.hasOwnProperty.call(svgsforevent, key)) {
     const iconName = key.split('/').pop().replace('.svg', '');
-    iconsforevent[iconName] = svgsforevent[key].default;
+    // Ensure iconName is not a prototype property
+    if (iconName !== '__proto__' && iconName !== 'constructor' && iconName !== 'prototype') {
+      iconsforevent[iconName] = svgsforevent[key].default;
+    }
   }
 }
 const DetectionBoundaryCanvas = ({ roomInfo = [], position = [], playbackData = null }) => {

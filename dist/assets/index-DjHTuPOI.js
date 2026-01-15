@@ -1,0 +1,1 @@
+import{r as t,S as e,j as s}from"./index-CR4fhODd.js";const n=()=>{const{setActiveMenu:r}=t.useContext(e);return s.jsx("div",{className:"w-full h-full flex  justify-center",children:"404"})};export{n as default};

@@ -172,8 +172,10 @@ const CurrentPosition = ({
         // CRITICAL: Do NOT include coordinates in key, or React will unmount/mount instead of animating.
         const key = targetId ? `pos-${targetId}` : `pos-idx-${index}`;
 
-        const imageIcon = postureIconMap[postureIndex];
-        const imageObj = images[imageIcon];
+        const imageIcon = Object.prototype.hasOwnProperty.call(postureIconMap, postureIndex)
+          ? postureIconMap[postureIndex]
+          : null;
+        const imageObj = imageIcon && images[imageIcon] ? images[imageIcon] : null;
 
         const targetX = canvasCenter?.x - coordinates.x * 10;
         const targetY = canvasCenter?.y + coordinates.y * 10;

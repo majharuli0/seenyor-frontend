@@ -262,9 +262,11 @@ export default function SummaryModal({ visible, onClose, modalData, summaryProps
                 count: 0,
               };
             }
-            averages[status].totalValue += parseInt(value);
-            averages[status].totalRatio += ratio;
-            averages[status].count += 1;
+            if (Object.prototype.hasOwnProperty.call(averages, status)) {
+              averages[status].totalValue += parseInt(value);
+              averages[status].totalRatio += ratio;
+              averages[status].count += 1;
+            }
           });
         });
 

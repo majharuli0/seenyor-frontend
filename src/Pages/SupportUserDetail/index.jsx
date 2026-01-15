@@ -110,7 +110,9 @@ const AdminDashboard = () => {
 
     setTitle('User');
 
-    query1[name] = id;
+    if (name && name !== '__proto__' && name !== 'constructor' && name !== 'prototype') {
+      query1[name] = id;
+    }
     query1.role = 'Support Agent';
     if (name == 'salesAgentId') {
       setChangeParams({

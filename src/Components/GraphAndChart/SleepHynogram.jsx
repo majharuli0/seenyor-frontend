@@ -219,10 +219,19 @@ const SleepHypnogram = ({ sleepData = {}, height = 200 }) => {
       const p1 = data[i];
       const p2 = data[i + 1];
 
+      const config1 = Object.prototype.hasOwnProperty.call(stageConfig, p1.stage)
+        ? stageConfig[p1.stage]
+        : null;
+      const config2 = Object.prototype.hasOwnProperty.call(stageConfig, p2.stage)
+        ? stageConfig[p2.stage]
+        : null;
+
+      if (!config1 || !config2) continue;
+
       const x1 = xScale(p1.time);
-      const y1 = yScale(stageConfig[p1.stage]?.yPosition);
+      const y1 = yScale(config1.yPosition);
       const x2 = xScale(p2.time);
-      const y2 = yScale(stageConfig[p2.stage]?.yPosition);
+      const y2 = yScale(config2.yPosition);
 
       const isSameStage = p1.stage === p2.stage;
 

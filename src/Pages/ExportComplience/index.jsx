@@ -228,7 +228,7 @@ export default function ExportCompliance() {
 
     const filterHash = getFilterHash(filters);
 
-    if (alarmsCache[filterHash]) {
+    if (Object.prototype.hasOwnProperty.call(alarmsCache, filterHash)) {
       setAlarmsData(alarmsCache[filterHash].data);
       setTotalPages(alarmsCache[filterHash].totalPages);
       setSummary(alarmsCache[filterHash].summary);
@@ -304,7 +304,7 @@ export default function ExportCompliance() {
 
     const filterHash = getFilterHash(filters);
 
-    if (visitsCache[filterHash]) {
+    if (Object.prototype.hasOwnProperty.call(visitsCache, filterHash)) {
       setVisitsData(visitsCache[filterHash].data);
       setTotalPages(visitsCache[filterHash].totalPages);
       return;

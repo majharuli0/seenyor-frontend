@@ -11,8 +11,16 @@ export default function CurrentPeoples({ data = {} }) {
   const { elderlyDetails } = context || {};
   const deviceCode = data?.device_no || elderlyDetails?.deviceId;
   const peopleData = useMemo(() => {
-    return deviceData[deviceCode]?.position || [];
-  }, [deviceData[deviceCode]?.position]);
+    return (
+      (Object.prototype.hasOwnProperty.call(deviceData, deviceCode)
+        ? deviceData[deviceCode]?.position
+        : []) || []
+    );
+  }, [
+    Object.prototype.hasOwnProperty.call(deviceData, deviceCode)
+      ? deviceData[deviceCode]?.position
+      : undefined,
+  ]);
   const currentState = useMemo(() => {
     const device = deviceData[deviceCode];
     const lastUpdate = device?.hbstaticsTimestamp;
