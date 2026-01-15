@@ -22,7 +22,7 @@ import ActiveAlertsCards from '@/Components/ActiveAlerts/ActiveAlertsCards';
 import CreateAndEditModal from '@/Components/CreateAndEditModal/CreateAndEditModal';
 import { getAlertList, getEventList } from '@/api/elderlySupport';
 import { getAlertsGroup } from '@/utils/helper';
-import { escapeRegExp } from '@/utils/regex';
+import { createSafeRegExp } from '@/utils/regex';
 import AlertsOverview from './Components/AlertsOverview/alertsOverview';
 import { getElderlies } from '@/api/elderly';
 
@@ -138,7 +138,7 @@ export default function EndUserDashboard() {
   }
   const highlightText = (text, query) => {
     if (!query) return text;
-    const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
+    const regex = createSafeRegExp(query, 'gi');
     return text.replace(regex, `<mark style="background-color: #80CAA7; color: white;">$1</mark>`);
   };
 

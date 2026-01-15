@@ -7,7 +7,7 @@ import { useUsers } from '@/MonitoringService/hooks/UseUser';
 import { useWhiteLabeling } from '@/MonitoringService/hooks/useWhiteLabeling';
 import { useUserStore } from '@/MonitoringService/store/useUserStore';
 import { removeToken } from '@/utils/auth';
-import { escapeRegExp } from '@/utils/regex';
+import { createSafeRegExp } from '@/utils/regex';
 
 import { useDemoMode } from '../../Context/DemoModeContext';
 import TitleBanner from '../header/TitleBanner';
@@ -87,7 +87,7 @@ export default function HeaderUI() {
   };
   const highlightText = (text, query) => {
     if (!query) return text;
-    const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
+    const regex = createSafeRegExp(query, 'gi');
     return text?.replace(regex, `<mark style="background-color: #80CAA7; color: white;">$1</mark>`);
   };
   const isDark = theme === 'light';

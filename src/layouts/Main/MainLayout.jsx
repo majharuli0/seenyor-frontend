@@ -62,7 +62,7 @@ import { removeToken } from '@/utils/auth';
 import { getToken, setToken } from '@/utils/auth';
 import { useIsSmallScreen } from '@/utils/isSmallScreen';
 import { initiateCall } from '@/utils/makeDeviceCall';
-import { escapeRegExp } from '@/utils/regex';
+import { createSafeRegExp } from '@/utils/regex';
 
 import GetRecentlyDeletedUserColumn from './utiles';
 const RoleBaseSortItem = {
@@ -684,7 +684,7 @@ const MainLayout = () => {
   }, [getElderlyBySearch]);
   const highlightText = (text, query) => {
     if (!query) return text;
-    const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
+    const regex = createSafeRegExp(query, 'gi');
     return text.replace(regex, `<mark style="background-color: #80CAA7; color: white;">$1</mark>`);
   };
 
