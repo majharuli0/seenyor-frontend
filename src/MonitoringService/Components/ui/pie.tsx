@@ -29,7 +29,7 @@ export function PieChartComponent({
   outerRadius = 80,
 }: PieChartProps) {
   const validData = data.filter((item) => item.count > 0);
-  console.log(validData?.length);
+  console.log(validData.length);
 
   if (validData.length === 0) {
     return (
@@ -86,7 +86,7 @@ export function PieChartComponent({
                     />
                     <div className='flex flex-1 justify-between items-center'>
                       <span className='text-muted-foreground'>
-                        {chartConfig[name as keyof typeof chartConfig]?.label || name}
+                        {chartConfig[name as keyof typeof chartConfig].label || name}
                       </span>
                       <span className='text-foreground font-mono font-medium tabular-nums pl-3'>
                         {value?.toLocaleString()}

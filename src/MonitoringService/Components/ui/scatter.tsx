@@ -223,11 +223,11 @@ export function Scatter({ data = [], width = '100%', height = 400 }) {
         },
         {
           name: 'Compliance',
-          itemStyle: { color: data?.length == 0 ? '#ccc' : '#10b981' },
+          itemStyle: { color: data.length == 0 ? '#ccc' : '#10b981' },
         },
         {
           name: 'Not Compliance',
-          itemStyle: { color: data?.length == 0 ? '#ccc' : '#ef4444' },
+          itemStyle: { color: data.length == 0 ? '#ccc' : '#ef4444' },
         },
       ],
     },
@@ -349,7 +349,7 @@ export function Scatter({ data = [], width = '100%', height = 400 }) {
           created_at: alert.created_at,
           closed_at: alert.closed_at,
           itemStyle: {
-            color: data?.length == 0 ? '#ccc' : '#10b981',
+            color: data.length == 0 ? '#ccc' : '#10b981',
           },
         })),
         itemStyle: {
@@ -379,7 +379,7 @@ export function Scatter({ data = [], width = '100%', height = 400 }) {
           created_at: alert.created_at,
           closed_at: alert.closed_at,
           itemStyle: {
-            color: data?.length == 0 ? '#ccc' : '#ef4444',
+            color: data.length == 0 ? '#ccc' : '#ef4444',
           },
         })),
         itemStyle: {

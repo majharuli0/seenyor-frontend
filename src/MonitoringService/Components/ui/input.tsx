@@ -50,7 +50,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {isPassword && (
           <button
             type='button'
-            onClick={() => setShowPassword((prev) => !prev)}
+            onClick={() => { setShowPassword((prev) => !prev); }}
             className='absolute inset-y-0 right-3 flex items-center text-muted-foreground hover:text-foreground focus:outline-none'
             tabIndex={-1}
           >

@@ -2,8 +2,8 @@ import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
 export function PieChartComponent({ data, centerLabel, width = '100%', height = 400 }) {
-  const total = data?.filter((item: any) => item.name == 'Resolved Alerts')[0]?.value || 0;
-  const filteredData = data?.filter((item: any) => item.name !== 'Resolved Alerts');
+  const total = data?.filter((item: unknown) => item.name == 'Resolved Alerts')[0]?.value || 0;
+  const filteredData = data?.filter((item: unknown) => item.name !== 'Resolved Alerts');
 
   const option = {
     tooltip: {
