@@ -10,6 +10,7 @@ import { useAlertTableColumns } from '../Utiles/utiles';
 import { getAlertList, getEventList } from '@/api/elderlySupport';
 import dayjs, { Dayjs } from 'dayjs';
 // import { getEventFilter } from "@/utils/helper";
+import { escapeRegExp } from '@/utils/regex';
 import { useNavigate } from 'react-router-dom';
 import ActiveAlertsCards from '@/Components/ActiveAlerts/ActiveAlertsCards';
 import { getElderlies } from '@/api/elderly';
@@ -108,7 +109,7 @@ export default function MonitoringAgencyDashboard() {
 
   const highlightText = (text, query) => {
     if (!query) return text;
-    const regex = new RegExp(`(${query})`, 'gi');
+    const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
     return text.replace(regex, `<mark style="background-color: #80CAA7; color: white;">$1</mark>`);
   };
 

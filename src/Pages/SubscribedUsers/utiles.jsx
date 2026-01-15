@@ -82,7 +82,7 @@ export const refundRequestColumns = [
   {
     title: 'Subscription Status',
     render: (row) => {
-      const isActive = Math.random() < 0.5; // 50% chance
+      const isActive = crypto.getRandomValues(new Uint8Array(1))[0] / 255 < 0.5; // 50% chance
       return (
         <button>
           <span className='text-[14px] xl:text-base font-normal text-text-secondary'>
@@ -103,7 +103,7 @@ export const refundRequestColumns = [
   {
     title: 'Default Payment Method',
     render: (row) => {
-      const isActive = Math.random() < 0.5; // 50% chance
+      const isActive = crypto.getRandomValues(new Uint8Array(1))[0] / 255 < 0.5; // 50% chance
       return (
         <button>
           <span className='text-[14px] xl:text-base font-normal text-text-secondary flex items-center gap-1'>
@@ -185,7 +185,7 @@ export const subcriptionColumns = [
   {
     title: 'Subscription Status',
     render: (row) => {
-      const isActive = Math.random() < 0.5; // 50% chance
+      const isActive = crypto.getRandomValues(new Uint8Array(1))[0] / 255 < 0.5; // 50% chance
       return (
         <button>
           <span className='text-[14px] xl:text-base font-normal text-text-secondary'>
@@ -225,7 +225,7 @@ export const subcriptionColumns = [
   {
     title: 'Details',
     render: (row) => {
-      const isActive = Math.random() < 0.5;
+      const isActive = crypto.getRandomValues(new Uint8Array(1))[0] / 255 < 0.5;
       return (
         <button>
           <span className='text-[14px] xl:text-base font-normal text-text-secondary flex items-center gap-1'>

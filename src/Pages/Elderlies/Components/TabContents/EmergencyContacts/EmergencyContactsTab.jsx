@@ -86,9 +86,11 @@ export const EmergencyContactCard = ({ contact }) => {
   };
   const getRandomColor = () => {
     // Generate random RGB values
-    const r = Math.floor(Math.random() * 156) + 50; // Keep colors lighter (50-205 range)
-    const g = Math.floor(Math.random() * 156) + 50;
-    const b = Math.floor(Math.random() * 156) + 50;
+    const array = new Uint8Array(3);
+    crypto.getRandomValues(array);
+    const r = (array[0] % 156) + 50; // Keep colors lighter (50-205 range)
+    const g = (array[1] % 156) + 50;
+    const b = (array[2] % 156) + 50;
 
     // Return the color as a hex string
     return `rgb(${r}, ${g}, ${b})`;

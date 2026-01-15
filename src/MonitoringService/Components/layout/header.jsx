@@ -1,8 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Input } from '../ui/input';
-import { Avatar, AvatarImage, AvatarFallback } from '../ui/avatar';
-import { LoaderCircleIcon, LogOut, Moon, Search, Sun, User, X } from 'lucide-react';
-import { ThemeToggleSwitch } from '../ui/ThemeToggleSwitch';
+import DOMPurify from 'dompurify';
+import { LoaderCircleIcon, LogOut, Moon, Search, Sun, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useUsers } from '@/MonitoringService/hooks/UseUser';
+import { useWhiteLabeling } from '@/MonitoringService/hooks/useWhiteLabeling';
+import { useUserStore } from '@/MonitoringService/store/useUserStore';
+import { removeToken } from '@/utils/auth';
+import { escapeRegExp } from '@/utils/regex';
+
+import { useDemoMode } from '../../Context/DemoModeContext';
+import TitleBanner from '../header/TitleBanner';
+import { useTheme } from '../ThemeProvider';
+import { Avatar, AvatarFallback,AvatarImage } from '../ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,18 +20,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
-import TitleBanner from '../header/TitleBanner';
-import { removeToken } from '@/utils/auth';
-import { useNavigate } from 'react-router-dom';
-import { useTheme } from '../ThemeProvider';
-import config from '../../conf.json';
-import { useUserStore } from '@/MonitoringService/store/useUserStore';
-import { useCustomers } from '@/MonitoringService/hooks/useCustomer';
-import { useWhiteLabeling } from '@/MonitoringService/hooks/useWhiteLabeling';
-import { useUsers } from '@/MonitoringService/hooks/UseUser';
-import { useDemoMode } from '../../Context/DemoModeContext';
-import { Switch } from '../ui/switch';
+import { Input } from '../ui/input';
 import { Label } from '../ui/label';
+import { Switch } from '../ui/switch';
+import { ThemeToggleSwitch } from '../ui/ThemeToggleSwitch';
 const BASE_IMAGE_URL = import.meta.env.VITE_S3_BASE_URL;
 const FALLBACK_IMAGES = {
   logoUrl: '/seenyor.svg',
@@ -46,7 +48,7 @@ export default function HeaderUI() {
   const { getUser } = useUserStore();
   const [userData, setUserData] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
-  const [isFocused, setIsFocused] = useState(false);
+  const [, setIsFocused] = useState(false);
   const [searchResult, setSearchResult] = useState();
 
   const { isDemoMode, toggleDemoMode } = useDemoMode();
@@ -58,7 +60,7 @@ export default function HeaderUI() {
     data: customer,
     isLoading,
     isSuccess,
-    refetch,
+    // refetch,
   } = useUsers(
     { search: searchQuery, role: 'monitoring_agent' },
     {
@@ -85,7 +87,7 @@ export default function HeaderUI() {
   };
   const highlightText = (text, query) => {
     if (!query) return text;
-    const regex = new RegExp(`(${query})`, 'gi');
+    const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
     return text?.replace(regex, `<mark style="background-color: #80CAA7; color: white;">$1</mark>`);
   };
   const isDark = theme === 'light';
@@ -158,7 +160,7 @@ export default function HeaderUI() {
                     <div className='font-semibold text-lg text-text'>
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: highlightText(result.name + ' ' + result.last_name, searchQuery),
+                          __html: DOMPurify.sanitize(highlightText(result.name + ' ' + result.last_name, searchQuery)),
                         }}
                       />
                     </div>
@@ -166,7 +168,7 @@ export default function HeaderUI() {
                       <strong>Email:</strong>{' '}
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: highlightText(result?.email, searchQuery),
+                          __html: DOMPurify.sanitize(highlightText(result?.email, searchQuery)),
                         }}
                       />
                     </div>
@@ -174,10 +176,10 @@ export default function HeaderUI() {
                       <strong>Contact Number:</strong>{' '}
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: highlightText(
+                          __html: DOMPurify.sanitize(highlightText(
                             result?.contact_code + ' ' + result?.contact_number,
                             searchQuery
-                          ),
+                          )),
                         }}
                       />
                     </div>

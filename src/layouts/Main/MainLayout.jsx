@@ -26,6 +26,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 const { confirm } = Modal;
 const { Header, Content, Sider } = Layout;
 import { Button, Dropdown } from 'antd';
+import DOMPurify from 'dompurify';
 import dayjs from 'dayjs';
 import { jwtDecode } from 'jwt-decode';
 import debounce from 'lodash/debounce';
@@ -61,6 +62,7 @@ import { removeToken } from '@/utils/auth';
 import { getToken, setToken } from '@/utils/auth';
 import { useIsSmallScreen } from '@/utils/isSmallScreen';
 import { initiateCall } from '@/utils/makeDeviceCall';
+import { escapeRegExp } from '@/utils/regex';
 
 import GetRecentlyDeletedUserColumn from './utiles';
 const RoleBaseSortItem = {
@@ -682,7 +684,7 @@ const MainLayout = () => {
   }, [getElderlyBySearch]);
   const highlightText = (text, query) => {
     if (!query) return text;
-    const regex = new RegExp(`(${query})`, 'gi');
+    const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
     return text.replace(regex, `<mark style="background-color: #80CAA7; color: white;">$1</mark>`);
   };
 
@@ -1051,7 +1053,7 @@ const MainLayout = () => {
                             <div className='font-semibold text-lg text-gray-800'>
                               <span
                                 dangerouslySetInnerHTML={{
-                                  __html: highlightText(result.name, searchQuery),
+                                  __html: DOMPurify.sanitize(highlightText(result.name, searchQuery)),
                                 }}
                               />
                             </div>
@@ -1059,7 +1061,9 @@ const MainLayout = () => {
                               <strong>Room No.:</strong>{' '}
                               <span
                                 dangerouslySetInnerHTML={{
-                                  __html: highlightText(result.room_no.toString(), searchQuery),
+                                  __html: DOMPurify.sanitize(
+                                    highlightText(result.room_no.toString(), searchQuery)
+                                  ),
                                 }}
                               />
                             </div>
@@ -1067,7 +1071,9 @@ const MainLayout = () => {
                               <strong>Age:</strong>{' '}
                               <span
                                 dangerouslySetInnerHTML={{
-                                  __html: highlightText(result.age.toString(), searchQuery),
+                                  __html: DOMPurify.sanitize(
+                                    highlightText(result.age.toString(), searchQuery)
+                                  ),
                                 }}
                               />
                             </div>
@@ -1075,7 +1081,9 @@ const MainLayout = () => {
                               <strong>Address:</strong>{' '}
                               <span
                                 dangerouslySetInnerHTML={{
-                                  __html: highlightText(result.address || 'N/A', searchQuery),
+                                  __html: DOMPurify.sanitize(
+                                    highlightText(result.address || 'N/A', searchQuery)
+                                  ),
                                 }}
                               />
                             </div>
@@ -1084,7 +1092,9 @@ const MainLayout = () => {
                               <strong>Sensitivity Factors:</strong>{' '}
                               <span
                                 dangerouslySetInnerHTML={{
-                                  __html: highlightText(result.diseases.join(', '), searchQuery),
+                                  __html: DOMPurify.sanitize(
+                                    highlightText(result.diseases.join(', '), searchQuery)
+                                  ),
                                 }}
                               />
                             </div>
@@ -1092,9 +1102,11 @@ const MainLayout = () => {
                               <strong>Comments:</strong>{' '}
                               <span
                                 dangerouslySetInnerHTML={{
-                                  __html: highlightText(
-                                    result.comments.map((c) => c.comment).join(', '),
-                                    searchQuery
+                                  __html: DOMPurify.sanitize(
+                                    highlightText(
+                                      result.comments.map((c) => c.comment).join(', '),
+                                      searchQuery
+                                    )
                                   ),
                                 }}
                               />

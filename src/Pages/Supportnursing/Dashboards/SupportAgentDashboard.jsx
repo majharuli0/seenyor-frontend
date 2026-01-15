@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Segmented, ConfigProvider, Select } from 'antd';
+import DOMPurify from 'dompurify';
 import { HomeOutlined, AimOutlined } from '@ant-design/icons';
 import MapView from './Components/Mapview/index';
 import RoomView from './Components/RoomvView/index';
@@ -18,6 +19,7 @@ import { getAlertList, getEventList } from '@/api/elderlySupport';
 import dayjs, { Dayjs } from 'dayjs';
 import { activeAlertsTableData, recentlyClosedAlertsTableData, eventsTableData } from './mock';
 import { getAlertsGroup } from '@/utils/helper';
+import { escapeRegExp } from '@/utils/regex';
 import { useNavigate } from 'react-router-dom';
 import ActiveAlertsCards from '@/Components/ActiveAlerts/ActiveAlertsCards';
 import AlertsOverview from './Components/AlertsOverview/alertsOverview';
@@ -135,7 +137,7 @@ export default function SupportAgentDashboard() {
   }, [getElderlyBySearch]);
   const highlightText = (text, query) => {
     if (!query) return text;
-    const regex = new RegExp(`(${query})`, 'gi');
+    const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
     return text.replace(regex, `<mark style="background-color: #80CAA7; color: white;">$1</mark>`);
   };
   return (
@@ -180,7 +182,7 @@ export default function SupportAgentDashboard() {
                         <div className='font-semibold text-lg text-gray-800'>
                           <span
                             dangerouslySetInnerHTML={{
-                              __html: highlightText(result.name, searchQuery),
+                              __html: DOMPurify.sanitize(highlightText(result.name, searchQuery)),
                             }}
                           />
                         </div>
@@ -188,7 +190,9 @@ export default function SupportAgentDashboard() {
                           <strong>Age:</strong>{' '}
                           <span
                             dangerouslySetInnerHTML={{
-                              __html: highlightText(result.age.toString(), searchQuery),
+                              __html: DOMPurify.sanitize(
+                                highlightText(result.age.toString(), searchQuery)
+                              ),
                             }}
                           />
                         </div>
@@ -196,7 +200,9 @@ export default function SupportAgentDashboard() {
                           <strong>Address:</strong>{' '}
                           <span
                             dangerouslySetInnerHTML={{
-                              __html: highlightText(result.address || 'N/A', searchQuery),
+                              __html: DOMPurify.sanitize(
+                                highlightText(result.address || 'N/A', searchQuery)
+                              ),
                             }}
                           />
                         </div>
@@ -205,7 +211,9 @@ export default function SupportAgentDashboard() {
                           <strong>Sensitivity Factors:</strong>{' '}
                           <span
                             dangerouslySetInnerHTML={{
-                              __html: highlightText(result.diseases.join(', '), searchQuery),
+                              __html: DOMPurify.sanitize(
+                                highlightText(result.diseases.join(', '), searchQuery)
+                              ),
                             }}
                           />
                         </div>
@@ -213,9 +221,11 @@ export default function SupportAgentDashboard() {
                           <strong>Comments:</strong>{' '}
                           <span
                             dangerouslySetInnerHTML={{
-                              __html: highlightText(
-                                result.comments.map((c) => c.comment).join(', '),
-                                searchQuery
+                              __html: DOMPurify.sanitize(
+                                highlightText(
+                                  result.comments.map((c) => c.comment).join(', '),
+                                  searchQuery
+                                )
                               ),
                             }}
                           />

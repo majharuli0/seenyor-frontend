@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MoonFilled } from '@ant-design/icons';
+import DOMPurify from 'dompurify';
 import { FaLungsVirus } from 'react-icons/fa';
 import LargeTextViewerModal from '@/Components/LargeTextViewerModal/LargeTextViewerModal';
 
@@ -19,7 +20,9 @@ export default function DataAnalysisCard({ dataAnalysisData = data, isSeeMore = 
         <p
           id='description'
           className='text-[14px] text-text-primary w-full font-normal'
-          dangerouslySetInnerHTML={{ __html: dataAnalysisData?.description }}
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(dataAnalysisData?.description),
+          }}
         >
           {/* {!isSeeMore ? (
             dataAnalysisData.description

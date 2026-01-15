@@ -581,7 +581,7 @@ export const useGetColumnsByRoleAndActiveTab = (activeTab) => {
     subscription_status: {
       title: 'Subscription Status',
       render: (row) => {
-        const isActive = Math.random() < 0.5; // 50% chance
+        const isActive = crypto.getRandomValues(new Uint8Array(1))[0] / 255 < 0.5; // 50% chance
         return (
           <button>
             <span className='text-[14px] xl:text-base font-normal text-text-secondary'>

@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import DOMPurify from 'dompurify';
 import { Space, Table, Tag, Modal } from 'antd';
 import { getUserPage, updateUser } from '@/api/AdminUser';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -266,9 +267,11 @@ const AdminDashboard = () => {
               <div
                 className='mr-1'
                 dangerouslySetInnerHTML={{
-                  __html: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 19 19" fill="none">
+                  __html: DOMPurify.sanitize(
+                    `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 19 19" fill="none">
                 <path d="M10.0941 5.54102C10.0941 5.2131 9.82824 4.94727 9.50033 4.94727C9.17241 4.94727 8.90658 5.2131 8.90658 5.54102V8.9056H5.54199C5.21407 8.9056 4.94824 9.17143 4.94824 9.49935C4.94824 9.82727 5.21407 10.0931 5.54199 10.0931H8.90658V13.4577C8.90658 13.7856 9.17241 14.0514 9.50033 14.0514C9.82824 14.0514 10.0941 13.7856 10.0941 13.4577V10.0931H13.4587C13.7866 10.0931 14.0524 9.82727 14.0524 9.49935C14.0524 9.17143 13.7866 8.9056 13.4587 8.9056H10.0941V5.54102Z" fill="white"/>
-                </svg>`,
+                </svg>`
+                  ),
                 }}
               ></div>
               Add New {createText}

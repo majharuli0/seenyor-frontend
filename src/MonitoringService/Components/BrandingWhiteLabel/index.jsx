@@ -1,27 +1,28 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Label } from '@/MonitoringService/Components/ui/label';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
+import { FiEdit2 } from 'react-icons/fi';
+
+import { uploadImage } from '@/api/Users';
 import { Input } from '@/MonitoringService/Components/ui/input';
+import { Label } from '@/MonitoringService/Components/ui/label';
 import {
   Select,
-  SelectTrigger,
-  SelectValue,
   SelectContent,
   SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from '@/MonitoringService/Components/ui/select';
-import { FiEdit2 } from 'react-icons/fi';
-import { useTheme } from '../ThemeProvider';
+import { useFavicon } from '@/MonitoringService/hooks/useFavicon';
 import {
   useUpdateUserRole,
-  useUploadImage,
-  useUserDetails,
 } from '@/MonitoringService/hooks/UseUser';
-import { useUserStore } from '@/MonitoringService/store/useUserStore';
 import { useWhiteLabeling } from '@/MonitoringService/hooks/useWhiteLabeling';
-import { Button } from '../ui/button';
-import { toast } from '../common/toast';
-import { uploadImage } from '@/api/Users';
 import { useBrandingStore } from '@/MonitoringService/store/useBrandingStore';
-import { useFavicon } from '@/MonitoringService/hooks/useFavicon';
+import { useUserStore } from '@/MonitoringService/store/useUserStore';
+
+import { toast } from '../common/toast';
+import { useTheme } from '../ThemeProvider';
+import { Button } from '../ui/button';
 const BASE_IMAGE_URL = import.meta.env.VITE_S3_BASE_URL;
 const FALLBACK_IMAGES = {
   logoUrl: '/seenyor.svg',
@@ -39,12 +40,20 @@ const BrandingImage = ({ src, preview, alt, className, fallback }) => {
   return <img src={imgSrc} alt={alt} className={className} onError={() => setImgSrc(fallback)} />;
 };
 
+BrandingImage.propTypes = {
+  src: PropTypes.string,
+  preview: PropTypes.string,
+  alt: PropTypes.string,
+  className: PropTypes.string,
+  fallback: PropTypes.string,
+};
+
 const BrandingWhiteLabel = () => {
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
   const { setBranding } = useBrandingStore();
 
   const branding = useWhiteLabeling();
-  const { user, getUser } = useUserStore();
+  const { getUser } = useUserStore();
   const [formDataInitialized, setFormDataInitialized] = useState(false);
   const { mutate: updateDetails, isPending: isUpdating } = useUpdateUserRole();
   const [formData, setFormData] = useState(null);
@@ -112,6 +121,10 @@ const BrandingWhiteLabel = () => {
 
     setFormData((prev) => {
       const keys = path.split('.');
+      if (keys.some(key => ['__proto__', 'constructor', 'prototype'].includes(key))) {
+        return prev;
+      }
+      
       const updated = { ...prev };
       let current = updated;
 

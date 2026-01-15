@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useContext } from 'react';
+import DOMPurify from 'dompurify';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -90,7 +91,7 @@ export default function DataAnalysisSlider() {
                             <h1
                               className=' text-[18px] font-semibold text-white m-0'
                               dangerouslySetInnerHTML={{
-                                __html: description,
+                                __html: DOMPurify.sanitize(description),
                               }}
                             ></h1>
                           </div>

@@ -1,5 +1,6 @@
+import { lazy, Suspense, useMemo } from 'react';
+
 import Orders from '@/Pages/Orders';
-import { Suspense, lazy, useMemo } from 'react';
 
 // Lazy load components
 // const AdminElderly = lazy(() => import("../Pages/Admin/AdminElderly"));
@@ -17,8 +18,8 @@ const SupportUserDetail = lazy(() => import('@/Pages/SupportUserDetail/index'));
 const NotFound = lazy(() => import('@/Pages/NotFound/index'));
 const RecentlyDeleted = lazy(() => import('@/Pages/RecentlyDeleted'));
 
-import MonitoringAgencyRoutes from '@/MonitoringService/Routes/MonitoringAgencyRoutes';
 import MonitoringAgencyDashboard from '@/MonitoringService/Pages/Dashboard/Dashboard';
+import MonitoringAgencyRoutes from '@/MonitoringService/Routes/MonitoringAgencyRoutes';
 const PasswordResetFlow = lazy(() => import('@/Pages/ForgotPassword/PasswordResetFlow'));
 const TransectionHistory = lazy(() => import('@/Pages/TransectionHistory/index'));
 // supporter dashboards
@@ -37,7 +38,6 @@ const AlertsList = lazy(() => import('@/Pages/Alerts/AlertsList'));
 const AlertDetail = lazy(() => import('@/Pages/Alerts/AlertDetail'));
 //Deals
 const Deals = lazy(() => import('@/Pages/Deals/index'));
-//Installation
 const Installation = lazy(() => import('@/Pages/Installation/index'));
 //Auth
 const SelectRolePage = lazy(() => import('@/Pages/Login/index'));
@@ -95,31 +95,30 @@ const ProtectedRoute = ({ role, children }) => {
   return role?.includes(userRole) ? children : null;
 };
 
-import ls from 'store2';
 import { jwtDecode } from 'jwt-decode';
-import DistributorDeal from '@/Pages/DistributorDeal';
-import DealDetails from '@/Pages/DealDetails';
-import NewDeal from '@/Pages/NewDeal';
-import MonitoringStation from '@/Pages/Supportnursing/Dashboards/MonitoringStation';
-import MonitoringStationConf from '@/Pages/MonitoringStationConf';
+import ls from 'store2';
+
+import { CenteredSkeleton } from '@/Components/Skeleton/SkeletonPage';
 import AlarmDetail from '@/Pages/AlarmDetail/AlarmDetail';
-import { Outlet } from 'react-router-dom';
 import Analytics from '@/Pages/Analytics';
+import Customers from '@/Pages/Customers';
+import DealDetails from '@/Pages/DealDetails';
+import DistributorDeal from '@/Pages/DistributorDeal';
 import ExportCompliance from '@/Pages/ExportComplience';
+import MonitoringStationConf from '@/Pages/MonitoringStationConf';
+import NewDeal from '@/Pages/NewDeal';
 import Reviews from '@/Pages/Reviews';
 import ReviewDetails from '@/Pages/Reviews/ReviewDetails';
-import { CenteredSkeleton } from '@/Components/Skeleton/SkeletonPage';
-import { removeToken } from '@/utils/auth';
 import CRMAdminDashboard from '@/Pages/Supportnursing/Dashboards/CRMAdminDashboard';
-import Customers from '@/Pages/Customers';
+import { removeToken } from '@/utils/auth';
 const CustomerDetails = lazy(() => import('@/Pages/Customers/CustomerDetails'));
 const Devices = lazy(() => import('@/Pages/Devices'));
 const CRMOrders = lazy(() => import('@/Pages/CRMOrders'));
 const OrderDetails = lazy(() => import('@/Pages/CRMOrders/OrderDetails'));
 
 // --- NEW ARCHITECTURE IMPORTS ---
-import AppShell from '@/layouts/Core/AppShell';
 import { getLayoutForRole } from '@/config/layoutRegistry';
+import AppShell from '@/layouts/Core/AppShell';
 
 // Unified RootLayout Component
 const RootLayout = () => {
@@ -156,7 +155,7 @@ const redirectToDashboard = (role) => {
     nursing_home: '#/support-nurnt',
   };
 
-  const basePath = rolePaths[role];
+  const basePath = Object.prototype.hasOwnProperty.call(rolePaths, role) ? rolePaths[role] : null;
   const currentPath = window.location.hash;
 
   if (basePath && !currentPath.startsWith(basePath)) {

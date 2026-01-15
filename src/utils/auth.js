@@ -1,4 +1,4 @@
-import { logout } from '@/api/login-v1';
+import axios from 'axios';
 
 import { getDeviceId } from './deviceId';
 import { clearLocalStorageKeys } from './helper';
@@ -31,7 +31,14 @@ export const removeToken = async () => {
     }
 
     try {
-      await logout({ deviceId });
+      // Use direct axios call to avoid circular dependency with api/login-v1 -> utils/axiosRequest
+      const baseURL = import.meta.env.VITE_APP_BASE_API_V1 || '';
+      await axios.delete(`${baseURL}/api/v1/auth/logout`, {
+        data: { deviceId },
+        headers: {
+             'Authorization': `Bearer ${getToken()}`
+        }
+      });
     } catch (apiError) {
       console.error('Logout API failed:', apiError);
     }

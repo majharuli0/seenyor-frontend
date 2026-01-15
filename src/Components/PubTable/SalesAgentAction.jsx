@@ -1,5 +1,6 @@
 import { Popover } from 'antd';
 import React, { useState, useContext, useEffect } from 'react';
+import DOMPurify from 'dompurify';
 import SupportAgentsEdit from './SupportAgentsEdit';
 import SupportAgentsResetPasswordModal from './SupportAgentsResetPasswordModal';
 import DeleteModal from '@/Shared/delete/DeleteModal';
@@ -77,9 +78,11 @@ const SalesAgentAction = (props) => {
               {/* <Icon icon="basil:other-2-outline" className=" text-[35px]"/> */}
               <span
                 dangerouslySetInnerHTML={{
-                  __html: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  __html: DOMPurify.sanitize(
+                    `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
 <path d="M11 4.875C11.3452 4.875 11.625 5.15482 11.625 5.5C11.625 5.84518 11.3452 6.125 11 6.125C10.6548 6.125 10.375 5.84518 10.375 5.5C10.375 5.15482 10.6548 4.875 11 4.875ZM11 10.375C11.3452 10.375 11.625 10.6548 11.625 11C11.625 11.3452 11.3452 11.625 11 11.625C10.6548 11.625 10.375 11.3452 10.375 11C10.375 10.6548 10.6548 10.375 11 10.375ZM11 15.875C11.3452 15.875 11.625 16.1548 11.625 16.5C11.625 16.8452 11.3452 17.125 11 17.125C10.6548 17.125 10.375 16.8452 10.375 16.5C10.375 16.1548 10.6548 15.875 11 15.875Z" fill="#666D90" stroke="#666D90" stroke-width="1.5"/>
-</svg>`,
+</svg>`
+                  ),
                 }}
               ></span>
             </button>

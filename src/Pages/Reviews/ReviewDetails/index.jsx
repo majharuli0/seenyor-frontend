@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import DOMPurify from 'dompurify';
 import {
   Button,
   Checkbox,
@@ -352,7 +353,7 @@ function SubmissionCard({ title, isActive = false, data = {}, type = 1 }) {
         <div
           className='text-gray-700 text-sm'
           dangerouslySetInnerHTML={{
-            __html: description.replace(/\n/g, '<br/>'),
+            __html: DOMPurify.sanitize(description.replace(/\n/g, '<br/>')),
           }}
         />
       )}
@@ -434,7 +435,10 @@ function RequestCard({ data = {} }) {
       </div>
 
       {description && (
-        <div className='ql-editor !min-h-fit' dangerouslySetInnerHTML={{ __html: description }} />
+        <div
+          className='ql-editor !min-h-fit'
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}
+        />
       )}
 
       {file && (
