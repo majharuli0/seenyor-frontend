@@ -1,1 +1,0 @@
-import{r as o,l as s,kJ as i}from"./index-CR4fhODd.js";function a(){return a=Object.assign?Object.assign.bind():function(t){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var e in r)Object.prototype.hasOwnProperty.call(r,e)&&(t[e]=r[e])}return t},a.apply(this,arguments)}const c=(t,n)=>o.createElement(s,a({},t,{ref:n,icon:i})),f=o.forwardRef(c);export{f as R};

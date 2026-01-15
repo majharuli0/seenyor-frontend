@@ -1,1 +1,0 @@
-import{r as t,j as x}from"./index-CR4fhODd.js";const s=t.createContext(),a=({children:o,onRefsUpdate:r})=>{const e=t.useRef({}),n=(c,u)=>{e.current[c]=u,r&&r(e.current)};return x.jsx(s.Provider,{value:{registerRef:n,refs:e},children:o})},i=()=>t.useContext(s);export{a as R,i as u};
