@@ -49,7 +49,7 @@ export default function ElderlyOverview({ elderlyDetails }) {
 
   // Function to initiate a call
   const handleCall = (number) => {
-    window.location.href = `tel:${number}`;
+    window.location.href = `tel:${encodeURIComponent(number)}`;
   };
 
   return (

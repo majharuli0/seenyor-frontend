@@ -28,23 +28,23 @@
 
 // export default debounce
 
-const timeouts = {};
+const timeouts = new Map();
 
 function debounce(func, wait = 500, immediate = false) {
-  if (timeouts[func]) {
-    clearTimeout(timeouts[func]);
+  if (timeouts.has(func)) {
+    clearTimeout(timeouts.get(func));
   }
 
   const later = () => {
     if (!immediate) {
       func();
     }
-    delete timeouts[func];
+    timeouts.delete(func);
   };
 
-  const shouldCallNow = immediate && !timeouts[func];
+  const shouldCallNow = immediate && !timeouts.has(func);
 
-  timeouts[func] = setTimeout(later, wait);
+  timeouts.set(func, setTimeout(later, wait));
 
   if (shouldCallNow) {
     func();

@@ -91,7 +91,7 @@ export default function DataAnalysisSlider() {
                             <h1
                               className=' text-[18px] font-semibold text-white m-0'
                               dangerouslySetInnerHTML={{
-                                __html: DOMPurify.sanitize(description),
+                                __html: DOMPurify.sanitize(description || ''),
                               }}
                             ></h1>
                           </div>

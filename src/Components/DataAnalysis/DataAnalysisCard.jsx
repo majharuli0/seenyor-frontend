@@ -21,7 +21,7 @@ export default function DataAnalysisCard({ dataAnalysisData = data, isSeeMore = 
           id='description'
           className='text-[14px] text-text-primary w-full font-normal'
           dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(dataAnalysisData?.description),
+            __html: DOMPurify.sanitize(dataAnalysisData?.description || ''),
           }}
         >
           {/* {!isSeeMore ? (

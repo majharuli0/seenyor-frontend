@@ -55,7 +55,7 @@ const ProtectedRoute = ({ role, children }) => {
         return jwtDecode(loggedUserToken)?.role;
       } catch (error) {
         if (error.name === 'InvalidTokenError') {
-          window.location.href = '/#/';
+          window.location.assign('/#/');
         }
       }
     }
@@ -72,7 +72,7 @@ const ProtectedRoute = ({ role, children }) => {
       } else if (userRole === 'end_user' && !currentPath.includes('end-user')) {
         window.location.href = '#/supporter/end-user/dashboard';
       } else if (userRole === 'super_admin' && !currentPath.includes('super-admin')) {
-        window.location.href = '#/super-admin/dashboard';
+        window.location.assign('#/super-admin/dashboard');
       } else if (
         (userRole === 'office' ||
           userRole === 'distributor' ||
@@ -82,7 +82,7 @@ const ProtectedRoute = ({ role, children }) => {
           userRole === 'nursing_home') &&
         !currentPath.includes('support-nurnt')
       ) {
-        window.location.href = '#/support-nurnt/dashboard';
+        window.location.assign('#/support-nurnt/dashboard');
       } else if (
         (userRole === 'monitoring_agency' || userRole === 'monitoring_agent') &&
         !currentPath.includes('ms')

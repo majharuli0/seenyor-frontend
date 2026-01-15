@@ -3,7 +3,7 @@ import { Tooltip } from 'antd';
 import { useState } from 'react';
 
 export function handleClick(id) {
-  window.location.href = `/#/super-admin/users/distributor-deal/details/${id}`;
+  window.location.href = `/#/super-admin/users/distributor-deal/details/${encodeURIComponent(id)}`;
 }
 export const distributorDealColumn = [
   {

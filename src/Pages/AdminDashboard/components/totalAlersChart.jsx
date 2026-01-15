@@ -19,7 +19,7 @@ export default function TotalAlertsChart() {
     },
     tooltip: {
       trigger: 'item',
-      formatter: '{a} <br/>{b} : {c} ({d}%)',
+      formatter: '{a} \n{b} : {c} ({d}%)',
     },
     series: [
       {

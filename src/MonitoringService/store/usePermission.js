@@ -8,23 +8,37 @@ export const usePermission = () => {
   const isMonitoringAgent = user?.role === 'monitoring_agent';
 
   const can = useMemo(
-    () => (key) => (isMonitoringAgent ? !!permissions[key] : true),
+    () => (key) =>
+      isMonitoringAgent
+        ? Object.prototype.hasOwnProperty.call(permissions, key) && !!permissions[key]
+        : true,
     [permissions, isMonitoringAgent]
   );
   const cannot = useMemo(
-    () => (key) => (isMonitoringAgent ? !permissions[key] : false),
+    () => (key) =>
+      isMonitoringAgent
+        ? !Object.prototype.hasOwnProperty.call(permissions, key) || !permissions[key]
+        : false,
     [permissions, isMonitoringAgent]
   );
   const hasAny = useMemo(
-    () =>
-      (keys = []) =>
-        isMonitoringAgent ? keys.some((key) => !!permissions[key]) : true,
+    () => (keys = []) =>
+      isMonitoringAgent
+        ? keys.some(
+            (key) =>
+              Object.prototype.hasOwnProperty.call(permissions, key) && !!permissions[key]
+          )
+        : true,
     [permissions, isMonitoringAgent]
   );
   const hasAll = useMemo(
-    () =>
-      (keys = []) =>
-        isMonitoringAgent ? keys.every((key) => !!permissions[key]) : true,
+    () => (keys = []) =>
+      isMonitoringAgent
+        ? keys.every(
+            (key) =>
+              Object.prototype.hasOwnProperty.call(permissions, key) && !!permissions[key]
+          )
+        : true,
     [permissions, isMonitoringAgent]
   );
 

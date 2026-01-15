@@ -14,13 +14,21 @@ const TimelineChart = ({
   const events = useMemo(
     () =>
       alarmEvents
-        .map((event) => ({
-          id: `${event.event_type}-${event.ts}`,
-          name: sleepEventsType[event.event_type],
-          startTime: new Date(event.ts),
-          endTime: new Date(event.ts),
-          color: sleepEventsColor[sleepEventsType[event.event_type]],
-        }))
+        .map((event) => {
+          const typeName = Object.prototype.hasOwnProperty.call(sleepEventsType, event.event_type)
+            ? sleepEventsType[event.event_type]
+            : undefined;
+          return {
+            id: `${event.event_type}-${event.ts}`,
+            name: typeName,
+            startTime: new Date(event.ts),
+            endTime: new Date(event.ts),
+            color:
+              typeName && Object.prototype.hasOwnProperty.call(sleepEventsColor, typeName)
+                ? sleepEventsColor[typeName]
+                : undefined,
+          };
+        })
         .filter((event) => event.name),
     [alarmEvents, sleepEventsType, sleepEventsColor]
   );

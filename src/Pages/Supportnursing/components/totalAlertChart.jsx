@@ -27,7 +27,7 @@ export default function TotalAlertChart({ data = [] }) {
   const option = {
     tooltip: {
       trigger: 'item',
-      formatter: '{a} <br/>{b}: {c} ({d}%)',
+      formatter: '{a} \n{b}: {c} ({d}%)',
     },
     color: ['#4379EE', '#F1963A', '#D90000'],
     series: [
